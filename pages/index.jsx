@@ -1,4 +1,6 @@
+import react, { useState } from 'react'
 import Hexagon from '../components/Hexagon'
+import MapSizeSelection from '../components/MapSizeSelection'
 
 const imgStyles = {
   width: '800px',
@@ -7,10 +9,12 @@ const imgStyles = {
 }
 
 const Index = () => {
-  const cellHeight = (500 / 26).toFixed(2)
-  const cellWidth = (800 / 44).toFixed(2)
-  const height = new Array(26).fill(0)
-  const width = new Array(44).fill(0)
+  const [xCells, setXCells] = useState(44)
+  const [yCells, setYCells] = useState(26)
+  const cellHeight = (500 / yCells).toFixed(2)
+  const cellWidth = (800 / xCells).toFixed(2)
+  const height = new Array(yCells).fill(0)
+  const width = new Array(xCells).fill(0)
 
   const hexagonDimensions = {
     width: cellWidth,
@@ -34,6 +38,7 @@ const Index = () => {
           </div>
         )
       })}
+      <MapSizeSelection setXCells={setXCells} setYCells={setYCells} />
     </div>
   )
 }
